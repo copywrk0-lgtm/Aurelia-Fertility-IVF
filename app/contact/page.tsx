@@ -1,1 +1,31 @@
-import PageShell from '../../components/PageShell'; import {CalendarDays,Clock3,MapPin,MessageCircle,Phone,ShieldCheck} from 'lucide-react'; export default function Contact(){return <PageShell eyebrow="06 / Begin here" title="You don't need to have all the answers before you call." body="Tell us a little about what you're looking for. We'll help you find a suitable consultation time."><section className="section"><div className="container contact-page-grid"><div><div className="contact-photo"><img src="https://images.unsplash.com/photo-1758691462651-611d730c5272?auto=format&fit=crop&w=1600&q=85" alt="Fictional fertility specialist"/></div><div className="contact-info large-info"><div><Phone/>+91 11 4567 8900</div><div><MessageCircle/>WhatsApp the clinic</div><div><MapPin/>42 Rosewood Avenue, New Delhi</div><div><Clock3/>Mon–Sat · 9:00 AM–6:00 PM</div></div></div><form className="booking-card"><div className="form-title"><CalendarDays/><div><strong>Book a consultation</strong><span>We'll get back to you to confirm a suitable time.</span></div></div><label>Name<input placeholder="Your name"/></label><label>Phone number<input placeholder="10-digit mobile number"/></label><label>Preferred time<select defaultValue=""><option value="" disabled>Select a time</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></label><label>What would you like help with?<select defaultValue=""><option value="" disabled>Select an option</option><option>Fertility consultation</option><option>IVF / IUI</option><option>Male infertility</option><option>Egg freezing / preservation</option></select></label><button className="primary-btn full">Request consultation</button><div className="privacy-note"><ShieldCheck/> Your enquiry is kept confidential in this fictional demo.</div></form></div></section></PageShell>}
+import { Clock3, MapPin, MessageCircle, Phone } from "lucide-react";
+import { clinic } from "../../config/clinic";
+import PageShell from "../../components/PageShell";
+
+export default function ContactPage() {
+  return (
+    <PageShell eyebrow="05 / Contact" title="Let's start with a conversation." body="Tell the clinic a little about what you are looking for. A real appointment team can then confirm a suitable time.">
+      <section className="section">
+        <div className="container contact-grid">
+          <div>
+            <div className="contact-details">
+              <a href={"tel:" + clinic.phone}><Phone size={18} /><span><strong>Call</strong>{clinic.phone}</span></a>
+              <a href={"https://wa.me/" + clinic.whatsapp.replace(/\D/g, "")}><MessageCircle size={18} /><span><strong>WhatsApp</strong>{clinic.whatsapp}</span></a>
+              <div><MapPin size={18} /><span><strong>South Delhi</strong>{clinic.address}</span></div>
+              <div><Clock3 size={18} /><span><strong>Clinic hours</strong>Mon–Sat · 9:00 AM – 8:30 PM</span></div>
+            </div>
+            <div className="map-placeholder"><span>MAP / GOOGLE MAPS EMBED GOES HERE</span><strong>{clinic.address}</strong></div>
+          </div>
+          <form className="contact-form" action="/contact" method="get">
+            <div><label htmlFor="name">Name</label><input id="name" name="name" required placeholder="Your name" /></div>
+            <div><label htmlFor="phone">Phone</label><input id="phone" name="phone" type="tel" required placeholder="10-digit mobile number" /></div>
+            <div><label htmlFor="day">Preferred day</label><select id="day" name="day" defaultValue=""><option value="" disabled>Select a day</option>{clinic.hours.filter((x) => x.hours !== "Closed").map((x) => <option key={x.day}>{x.day}</option>)}</select></div>
+            <div><label htmlFor="message">What would you like to discuss?</label><textarea id="message" name="message" rows={5} placeholder="A short note is enough." /></div>
+            <button className="primary-btn" type="submit">Request a consultation</button>
+            <p className="form-note">Demo form only — no patient information is stored or sent.</p>
+          </form>
+        </div>
+      </section>
+    </PageShell>
+  );
+}
