@@ -1,34 +1,125 @@
-'use client';
-import { useState } from 'react';
-import { Reveal } from '../components/Reveal';
-import { ArrowRight, CalendarDays, Check, ChevronDown, Clock3, HeartHandshake, MapPin, Menu, MessageCircle, Phone, ShieldCheck, Stethoscope, X } from 'lucide-react';
+import { ArrowRight, Clock3, MapPin, Phone } from "lucide-react";
+import { clinic } from "../config/clinic";
+import { Reveal } from "../components/Reveal";
+import SiteNav from "../components/SiteNav";
+import SiteFooter from "../components/SiteFooter";
 
-const faqs=[['When should I see a fertility specialist?','If you have been trying to conceive without success, or have concerns about fertility, an evaluation can help you understand your options. The right time depends on age, history and individual circumstances.'],['What happens during the first consultation?','The first visit is a conversation. The doctor reviews your history, previous investigations or treatments, and explains possible next steps.'],['Is IVF painful?','Experiences vary. Some parts of treatment can cause temporary discomfort. Your care team should explain what to expect before each step.'],['How long does IVF take?','A cycle can take several weeks depending on the protocol and individual response. Your doctor will provide a personalised timeline.'],['How much does IVF cost?','Costs vary based on medicines, investigations, the treatment plan and additional procedures.']];
-export default function Home(){
- const [openFaq,setOpenFaq]=useState(0); const [menu,setMenu]=useState(false);
- const doctor='https://images.unsplash.com/photo-1758691462651-611d730c5272?auto=format&fit=crop&w=1600&q=85';
- const clinic='https://images.unsplash.com/photo-1758691462667-f2fb90a067ff?auto=format&fit=crop&w=1800&q=85';
- return <main>
- <div className="demo-bar">DEMO — FICTIONAL CLINIC • All doctors, credentials, numbers and patient stories shown here are fictional.</div>
- <header className="nav-wrap"><nav className="nav container"><a href="/" className="brand"><span className="brand-mark">A</span><span>Aurelia <em>Fertility</em></span></a><div className={'nav-links '+(menu?'open':'')}>{[['/doctor','Your Doctor'],['/treatments','Treatments'],['/journey','Your Journey'],['/costs','Costs'],['/faq','FAQs'],['/contact','Contact']].map(([h,l])=><a href={h} key={h} onClick={()=>setMenu(false)}>{l}</a>)}<a className="nav-cta" href="/contact">Book a consultation <ArrowRight size={16}/></a></div><button className="menu-btn" onClick={()=>setMenu(!menu)} aria-label="Menu">{menu?<X/>:<Menu/>}</button></nav></header>
+const faqs = [
+  ["When should I see a fertility specialist?", "The right time depends on age, medical history and how long you have been trying. A consultation can help make sense of your particular situation."],
+  ["What happens during the first consultation?", "The doctor reviews your history, previous investigations and any treatment so far, then explains what may be useful to do next."],
+  ["Is IVF painful?", "Experiences vary. Some parts of treatment can cause temporary discomfort, and your care team should explain what to expect before each step."],
+];
 
- <section className="hero"><div className="hero-glow one"/><div className="hero-glow two"/><div className="container hero-grid"><Reveal><div className="hero-copy"><div className="eyebrow"><span className="dot"/> Fertility care, with clarity and compassion</div><h1>A thoughtful beginning to your <span>fertility journey.</span></h1><p className="lead">Personalised fertility care designed around your questions, your circumstances and the next step that makes sense for you.</p><div className="hero-actions"><a className="primary-btn" href="/contact">Book a consultation <ArrowRight size={18}/></a><a className="text-btn" href="/journey">See how it works <ArrowRight size={16}/></a></div><div className="trust-row"><div><ShieldCheck size={17}/>Confidential consultations</div><div><HeartHandshake size={17}/>Personalised care</div></div></div></Reveal><Reveal delay={120}><div className="doctor-card"><div className="portrait"><img src={doctor} alt="Fictional fertility specialist"/></div><div className="portrait-note">Dr. Anaya Mehra<br/><span>Reproductive Medicine Specialist</span></div><div className="credential-card"><div className="mini-icon"><Stethoscope size={18}/></div><div><strong>Dr. Anaya Mehra</strong><p>MBBS · MD · Fellowship in Reproductive Medicine</p></div></div></div></Reveal></div></section>
+export default function Home() {
+  return (
+    <main>
+      <div className="demo-bar">{clinic.demoLabel} · Fictional content, doctor and contact details.</div>
+      <SiteNav />
 
- <section className="proof-strip"><div className="container proof-grid"><div><strong>One clear plan.</strong><span>Understand your options before you decide.</span></div><div><strong>One familiar team.</strong><span>Guidance through every stage of care.</span></div><div><strong>One conversation at a time.</strong><span>No pressure. No confusing jargon.</span></div></div></section>
+      <section className="hero">
+        <div className="container hero-meta">
+          <span>Fertility & women’s care</span>
+          <span>South Delhi · Evening consultations</span>
+        </div>
+        <div className="container hero-copy">
+          <div className="hero-kicker">A quieter way to begin</div>
+          <h1>Fertility treatment should feel less like a maze.</h1>
+          <p className="hero-lead">A considered first step for people who want to understand what is happening, what can be done, and what comes next.</p>
+          <a className="primary-btn" href="/contact">Book a consultation <ArrowRight size={17} /></a>
+        </div>
+        <div className="container hero-image-wrap">
+          <div className="hero-image">
+            <img src={clinic.images.hero} alt="Fictional fertility specialist in a calm clinic setting" width="1800" height="1000" fetchPriority="high" />
+            <div className="hero-caption"><span>DR. MEERA KHANNA</span><strong>11 years in obstetrics, gynaecology & reproductive medicine</strong></div>
+          </div>
+          <div className="hero-note">
+            <span>THE FIRST APPOINTMENT</span>
+            <strong>Come with questions. Leave with a clearer next step.</strong>
+          </div>
+        </div>
+      </section>
 
- <section className="section"><div className="container split"><div><div className="section-kicker">01 / Your doctor</div></div><div className="section-content"><div className="doctor-photo-inline"><img src={doctor} alt="Fictional doctor"/></div><h2>Meet the doctor behind your care.</h2><p className="large">Fertility treatment can involve big decisions. You should know who is guiding them, what they recommend, and why.</p><div className="bio-grid"><div className="bio-stat"><strong>12+</strong><span>Fictional years in reproductive medicine</span></div><div className="bio-stat"><strong>MBBS</strong><span>Medical qualification</span></div><div className="bio-stat"><strong>MD</strong><span>Obstetrics & Gynaecology</span></div></div><p>Dr. Anaya Mehra is fictional. In a live clinic site, every qualification, registration, accreditation and clinical claim would be supplied and approved by the clinic.</p><a className="outline-btn" href="/doctor">Meet the doctor <ArrowRight size={16}/></a></div></div></section>
+      <section className="section quiet-section">
+        <div className="container editorial-grid">
+          <div className="section-kicker">01 / The first conversation</div>
+          <Reveal>
+            <div>
+              <h2>Most people don't arrive knowing which treatment they need.</h2>
+              <p className="large">They arrive with questions. Sometimes test reports. Sometimes years of trying. Sometimes advice from five different people that doesn't quite agree.</p>
+              <p>Our fictional clinic concept is designed around making that first conversation useful: understand the history, explain the findings and discuss sensible next steps without rushing the decision.</p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
- <section className="section treatments"><div className="container"><div className="section-head"><div><div className="section-kicker">02 / Treatments</div><h2>Care explained in plain language.</h2></div><p>Different situations call for different approaches. Your treatment plan should start with understanding.</p></div><div className="treatment-grid">{[['IVF','A more assisted route to conception.','/treatments/ivf'],['IUI','A less invasive option for selected situations.','/treatments/iui'],['ICSI','A specialised IVF fertilisation technique.','/treatments/icsi'],['Egg freezing','Preserving eggs for potential future use.','/treatments/egg-freezing'],['Male infertility','Assessment and treatment options for male-factor concerns.','/treatments/male-infertility'],['Fertility preservation','Planning ahead when future fertility may be affected.','/treatments/fertility-preservation']].map(([t,d,h],i)=><article className="treatment-card" key={t}><span className="card-num">0{i+1}</span><h3>{t}</h3><p>{d}</p><a href={h}>Explore treatment <ArrowRight size={15}/></a></article>)}</div></div></section>
+      <section className="section olive-section">
+        <div className="container doctor-feature">
+          <Reveal>
+            <div className="doctor-image"><img src={clinic.images.doctor} alt="Fictional Dr. Meera Khanna" width="1200" height="1400" loading="lazy" /></div>
+          </Reveal>
+          <Reveal>
+            <div>
+              <div className="section-kicker light">02 / Your doctor</div>
+              <h2>“I want patients to leave knowing what their options mean for them.”</h2>
+              <p className="large light-copy">{clinic.doctor.quote}</p>
+              <div className="doctor-meta"><strong>{clinic.doctor.name}</strong><span>{clinic.doctor.credentials}</span><span>{clinic.doctor.experience} of experience</span></div>
+              <a className="light-btn" href="/doctor">Meet Dr. Khanna <ArrowRight size={16} /></a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
- <section className="section journey"><div className="container"><div className="journey-visual"><img src={clinic} alt="Fictional doctor reviewing medical information"/><div><span>Clear information</span><strong>Understand the next step before you take it.</strong></div></div><div className="section-head"><div><div className="section-kicker">03 / Your journey</div><h2>Know what happens next.</h2></div><p>The first appointment doesn't have to feel like walking into the unknown.</p></div><div className="steps">{[['01','First conversation','We listen to your history, concerns and goals.'],['02','Assessment','Your doctor explains which investigations may be useful.'],['03','A clear plan','We discuss suitable treatment options and what they involve.'],['04','Treatment & follow-up','You receive guidance throughout the plan.']].map(([n,t,d])=><div className="step" key={n}><div className="step-number">{n}</div><div><h3>{t}</h3><p>{d}</p></div></div>)}</div></div></section>
+      <section className="section service-preview">
+        <div className="container">
+          <div className="section-head">
+            <div><div className="section-kicker">03 / Care</div><h2>Different treatment. Different reason.</h2></div>
+            <p>Start with the service that brought you here, then discuss whether it actually fits your situation.</p>
+          </div>
+          <div className="service-list">
+            {clinic.services.map((service, i) => (
+              <a href={service.href} className="service-row" key={service.name}>
+                <span>0{i + 1}</span><strong>{service.name}</strong><p>{service.description}</p><ArrowRight size={18} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
- <section className="section cost"><div className="container cost-box"><div><div className="section-kicker">04 / Costs</div><h2>Know what can affect the cost.</h2><p>Medicines, investigations, treatment protocols and additional procedures can all affect the final amount.</p><a className="primary-btn" href="/costs">Understand costs <ArrowRight size={17}/></a></div><div className="cost-list">{['Initial consultation & assessment','Investigations recommended by the doctor','Medicines and monitoring','Procedure-specific costs','Additional treatment, if required'].map(x=><div key={x}><Check size={17}/><span>{x}</span></div>)}</div></div></section>
+      <section className="section practical">
+        <div className="container practical-grid">
+          <div>
+            <div className="section-kicker">04 / Practical</div>
+            <h2>Built around real working days.</h2>
+            <p className="large">Consultations run until 8:30 PM, Monday through Saturday, so a first appointment doesn't have to mean losing a whole day.</p>
+            <a className="outline-btn" href="/contact">See contact details <ArrowRight size={16} /></a>
+          </div>
+          <div className="hours-card">
+            <div><Clock3 size={18} /><strong>Clinic hours</strong></div>
+            {clinic.hours.map((item) => <div className="hours-row" key={item.day}><span>{item.day}</span><span>{item.hours}</span></div>)}
+          </div>
+        </div>
+      </section>
 
- <section className="section faq"><div className="container faq-grid"><div><div className="section-kicker">05 / FAQs</div><h2>Questions you may be carrying with you.</h2><p>Start here, then bring the rest to your consultation.</p></div><div className="faq-list">{faqs.map(([q,a],i)=><div className={'faq-item '+(openFaq===i?'active':'')} key={q}><button onClick={()=>setOpenFaq(openFaq===i?-1:i)}><span>{q}</span><ChevronDown size={18}/></button>{openFaq===i&&<div className="answer"><p>{a}</p></div>}</div>)}</div></div></section>
+      <section className="section reviews">
+        <div className="container review-placeholder">
+          <div><div className="section-kicker">05 / Reviews</div><h2>Google reviews appear here.</h2></div>
+          <p>Real review content should be connected only after the clinic has an established Google Business Profile. No testimonials or ratings are invented for this demo.</p>
+        </div>
+      </section>
 
- <section className="section contact"><div className="container contact-grid"><div><div className="section-kicker">06 / Begin here</div><h2>You don't need to have all the answers before you call.</h2><p>Tell us a little about what you're looking for. We'll help you find a suitable consultation time.</p><div className="contact-info"><a href="tel:+911145678900"><Phone size={18}/>+91 11 4567 8900</a><a href="https://wa.me/911145678900"><MessageCircle size={18}/>WhatsApp the clinic</a><div><MapPin size={18}/>42 Rosewood Avenue, New Delhi</div><div><Clock3 size={18}/>Mon–Sat · 9:00 AM–6:00 PM</div></div></div><form className="booking-card" action="/contact" method="get"><div className="form-title"><CalendarDays size={20}/><div><strong>Book a consultation</strong><span>We'll get back to you to confirm a suitable time.</span></div></div><label htmlFor="home-name">Name<input id="home-name" name="name" placeholder="Your name" required/></label><label htmlFor="home-phone">Phone number<input id="home-phone" name="phone" type="tel" placeholder="10-digit mobile number" required/></label><label>Preferred time<select defaultValue=""><option value="" disabled>Select a time</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></label><button className="primary-btn full">Request consultation <ArrowRight size={17}/></button><small>Your enquiry is kept confidential in this fictional demo.</small></form></div></section>
+      <section className="section final-cta">
+        <div className="container final-cta-inner">
+          <div><div className="section-kicker light">Start with a conversation</div><h2>You don't need all the answers before you call.</h2></div>
+          <a className="light-btn" href="/contact">Book a consultation <ArrowRight size={17} /></a>
+        </div>
+      </section>
 
- <footer><div className="container footer-grid"><div><a className="brand" href="/"><span className="brand-mark">A</span><span>Aurelia <em>Fertility</em></span></a><p>A fictional IVF clinic website concept by Copywrk.</p></div><div className="footer-links"><a href="/doctor">Doctor</a><a href="/treatments">Treatments</a><a href="/journey">Journey</a><a href="/costs">Costs</a><a href="/faq">FAQs</a><a href="/contact">Contact</a></div></div><div className="container legal">© 2026 Aurelia Fertility — Fictional demonstration website. Not a real medical clinic.</div></footer>
- <div className="mobile-cta"><a href="tel:+911145678900"><Phone size={17}/>Call</a><a href="/contact"><CalendarDays size={17}/>Book</a><a href="https://wa.me/911145678900"><MessageCircle size={17}/>WhatsApp</a></div>
- </main>
+      <SiteFooter />
+      <div className="mobile-cta">
+        <a href={"tel:" + clinic.phone}><Phone size={17} />Call</a>
+        <a href="/contact">Book</a>
+        <a href={"https://wa.me/" + clinic.whatsapp.replace(/\D/g, "")}>WhatsApp</a>
+      </div>
+    </main>
+  );
 }
