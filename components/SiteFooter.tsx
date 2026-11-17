@@ -1,4 +1,27 @@
-import { ArrowUpRight } from 'lucide-react';
+import { clinic } from "../config/clinic";
+
 export default function SiteFooter() {
-  return <footer><div className="container footer-grid"><div><a className="brand" href="/"><span className="brand-mark">A</span><span>Aurelia <em>Fertility</em></span></a><p>A fictional IVF clinic website concept by Copywrk.</p></div><div className="footer-links"><a href="/doctor">Doctor</a><a href="/treatments">Treatments</a><a href="/journey">Journey</a><a href="/costs">Costs</a><a href="/faq">FAQs</a><a href="/contact">Contact <ArrowUpRight size={12}/></a></div></div><div className="container legal">© 2026 Aurelia Fertility — Fictional demonstration website. Not a real medical clinic.</div></footer>;
+  return (
+    <footer className="site-footer">
+      <div className="container footer-grid">
+        <div>
+          <a className="brand" href="/">
+            <span className="brand-mark">N</span>
+            <span>{clinic.shortName} <em>Fertility</em></span>
+          </a>
+          <p>{clinic.demoLabel}. Built as a reusable Copywrk sales concept.</p>
+        </div>
+        <div className="footer-links">
+          <a href="/doctor">Doctor</a>
+          <a href="/services">Services</a>
+          <a href="/ivf">IVF</a>
+          <a href="/faq">FAQ</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+      <div className="container legal">
+        © 2026 {clinic.name} — fictional demonstration website. Medical details must be replaced and clinically approved before launch.
+      </div>
+    </footer>
+  );
 }
