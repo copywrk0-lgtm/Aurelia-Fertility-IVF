@@ -1,0 +1,4 @@
+import { ArrowUpRight } from 'lucide-react';
+export default function SiteFooter() {
+  return <footer><div className="container footer-grid"><div><a className="brand" href="/"><span className="brand-mark">A</span><span>Aurelia <em>Fertility</em></span></a><p>A fictional IVF clinic website concept by Copywrk.</p></div><div className="footer-links"><a href="/doctor">Doctor</a><a href="/treatments">Treatments</a><a href="/journey">Journey</a><a href="/costs">Costs</a><a href="/faq">FAQs</a><a href="/contact">Contact <ArrowUpRight size={12}/></a></div></div><div className="container legal">© 2026 Aurelia Fertility — Fictional demonstration website. Not a real medical clinic.</div></footer>;
+}
