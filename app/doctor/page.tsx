@@ -1,7 +1,39 @@
-import { ArrowRight, Award, GraduationCap, ShieldCheck, Stethoscope } from 'lucide-react';
-import PageIntro from '../../components/PageIntro';
-import { Reveal } from '../../components/Reveal';
-import SiteNav from '../../components/SiteNav';
-import SiteFooter from '../../components/SiteFooter';
-const doctorImage='https://images.unsplash.com/photo-1758691462651-611d730c5272?auto=format&fit=crop&w=1800&q=85';
-export default function DoctorPage(){return <main><div className="demo-bar">DEMO — FICTIONAL CLINIC • All doctors, credentials and clinical claims are fictional.</div><SiteNav/><PageIntro eyebrow="01 / Your doctor" title="Meet the person behind the plan." body="Fertility care starts with a conversation. This fictional profile shows how a live clinic could make the doctor's experience, qualifications and approach easy to understand." image={doctorImage}/><section className="section"><div className="container profile-grid"><Reveal><div className="profile-image"><img src={doctorImage} alt="Fictional fertility specialist"/></div></Reveal><Reveal delay={120}><div><div className="section-kicker">Dr. Anaya Mehra</div><h2>Clear answers. Thoughtful care.</h2><p className="large">Dr. Anaya Mehra is a fictional reproductive medicine specialist created for this demonstration. In a real project, the clinic would provide and approve every qualification, registration, accreditation and professional claim.</p><div className="credential-grid"><div><GraduationCap/><strong>MBBS · MD</strong><span>Obstetrics & Gynaecology</span></div><div><Stethoscope/><strong>Fellowship</strong><span>Reproductive Medicine</span></div><div><Award/><strong>12+ years</strong><span>Fictional experience figure</span></div><div><ShieldCheck/><strong>ART details</strong><span>Shown only after verification</span></div></div></div></Reveal></div></section><section className="section soft-section"><div className="container narrow"><Reveal><div className="section-kicker">What matters</div><h2>The doctor page should answer the trust questions.</h2><div className="editorial-list"><div><span>01</span><p>Who is the doctor and what did they train in?</p></div><div><span>02</span><p>How much relevant experience do they have?</p></div><div><span>03</span><p>What professional registrations or accreditations can be verified?</p></div><div><span>04</span><p>How do they explain treatment and support patients through decisions?</p></div></div></Reveal></div></section><section className="cta-band"><div className="container"><div><span className="section-kicker">Ready when you are</span><h2>Start with a conversation.</h2></div><a className="primary-btn" href="/contact">Book a consultation <ArrowRight size={17}/></a></div></section><SiteFooter/></main>}
+import { ArrowRight } from "lucide-react";
+import { clinic } from "../../config/clinic";
+import { Reveal } from "../../components/Reveal";
+import PageShell from "../../components/PageShell";
+
+export default function DoctorPage() {
+  return (
+    <PageShell eyebrow="01 / Doctor" title="Meet the doctor behind the plan." body="A fertility consultation is easier when you know who is listening, how they think and what the appointment is designed to do.">
+      <section className="section">
+        <div className="container doctor-page-grid">
+          <Reveal><div className="portrait-large"><img src={clinic.images.doctor} alt="Fictional Dr. Meera Khanna" width="1200" height="1400" /></div></Reveal>
+          <Reveal><div>
+            <div className="section-kicker">Dr. Meera Khanna</div>
+            <h2>Clear explanations. Individual decisions.</h2>
+            <p className="large">{clinic.doctor.bio}</p>
+            <div className="credential-list">
+              <div><span>Qualifications</span><strong>{clinic.doctor.credentials}</strong></div>
+              <div><span>Experience</span><strong>{clinic.doctor.experience}</strong></div>
+              <div><span>Consultation focus</span><strong>Fertility assessment, assisted reproduction and reproductive health</strong></div>
+            </div>
+          </div></Reveal>
+        </div>
+      </section>
+      <section className="section paper-section">
+        <div className="container narrow">
+          <div className="section-kicker">How she approaches a first visit</div>
+          <div className="editorial-list">
+            {[
+              ["01", "Listen first", "Your history and previous treatment are part of the clinical picture, not paperwork to rush through."],
+              ["02", "Explain the why", "If a test or treatment is suggested, the reason for it should be clear to you."],
+              ["03", "Make the next step practical", "The aim is a plan you can understand, discuss and decide on — not a pile of unexplained instructions."],
+            ].map(([n, t, d]) => <div key={n}><span>{n}</span><div><h3>{t}</h3><p>{d}</p></div></div>)}
+          </div>
+        </div>
+      </section>
+      <section className="cta-band"><div className="container cta-inner"><div><div className="section-kicker light">Next step</div><h2>Bring your questions.</h2></div><a className="light-btn" href="/contact">Book a consultation <ArrowRight size={17} /></a></div></section>
+    </PageShell>
+  );
+}
