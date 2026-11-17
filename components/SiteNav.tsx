@@ -1,3 +1,5 @@
+'use client';
+
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { clinic } from "../config/clinic";
