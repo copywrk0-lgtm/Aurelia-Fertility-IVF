@@ -1,7 +1,42 @@
-import { ArrowRight, ChevronDown } from 'lucide-react';
-import PageIntro from '../../components/PageIntro';
-import { Reveal } from '../../components/Reveal';
-import SiteNav from '../../components/SiteNav';
-import SiteFooter from '../../components/SiteFooter';
-const groups: [string, [string, string][]][] = [['Getting started',[['When should I see a fertility specialist?','If you have been trying to conceive without success, or have concerns about fertility, an evaluation can help you understand your options. The right time depends on age, history and individual circumstances.'],['What happens during the first consultation?','The first visit is a conversation. The doctor reviews your history, asks about previous investigations or treatments, and explains which next steps may be appropriate.'],['What should I bring?','Bring previous reports, treatment details, current medicines and the questions you want answered.']]],['Treatment',[['Is IVF painful?','Experiences vary. Some parts of treatment can cause temporary discomfort, and the clinic team should explain what to expect before each step.'],['How long does IVF take?','A treatment cycle can take several weeks, depending on the protocol and individual response. Your doctor will give you a personalised timeline.'],['How many cycles will I need?','There is no single number that applies to everyone. Your doctor can discuss the factors that may affect your treatment plan.']]],['Practical',[['How much does IVF cost?','Costs vary based on medicines, investigations, the treatment plan and any additional procedures. A consultation is the best way to understand the likely cost for your situation.'],['Is my consultation confidential?','A live clinic should clearly explain its privacy practices and how enquiry information is handled.'],['Can I contact the clinic on WhatsApp?','Yes, a live site can offer WhatsApp as a convenient first contact while keeping the information requested on the initial form minimal.']]]];
-export default function FAQPage(){return <main><div className="demo-bar">DEMO — FICTIONAL CLINIC • FAQ answers are illustrative and require medical review before publication.</div><SiteNav/><PageIntro eyebrow="05 / FAQs" title="The questions people are often afraid to ask." body="Good fertility content doesn't promise certainty. It makes the process easier to understand and gives patients better questions to bring to their doctor."/><section className="section"><div className="container faq-page">{groups.map(([group,items],g)=><Reveal key={group} delay={g*100}><div className="faq-group"><div className="section-kicker">{group}</div><div>{items.map(([q,a])=><details key={q}><summary>{q}<ChevronDown size={18}/></summary><p>{a}</p></details>)}</div></div></Reveal>)}</div></section><section className="cta-band"><div className="container"><div><span className="section-kicker">Still have questions?</span><h2>Bring them to the consultation.</h2></div><a className="primary-btn" href="/contact">Book a consultation <ArrowRight size={17}/></a></div></section><SiteFooter/></main>}
+import PageShell from "../../components/PageShell";
+
+const groups: [string, [string, string][]][] = [
+  ["Before you visit", [
+    ["When should I see a fertility specialist?", "The right time depends on age, history and individual circumstances. A consultation can help you understand what may be useful next."],
+    ["What happens during the first consultation?", "The doctor reviews your history, previous investigations and treatment, then explains possible next steps."],
+    ["Do both partners need to attend?", "It can be useful for both partners to attend when appropriate, particularly when fertility factors may involve either person."],
+  ]],
+  ["Treatment questions", [
+    ["Does fertility treatment hurt?", "Experiences vary. Some parts of treatment can cause temporary discomfort, and your care team should explain what to expect."],
+    ["How long does an IVF cycle take?", "A cycle can take several weeks, but the timeline depends on the protocol and individual response."],
+    ["How much does IVF cost?", "Cost depends on medicines, investigations, the treatment plan and any additional procedures. A real clinic should provide its current pricing structure."],
+    ["What happens if the first treatment does not work?", "Your doctor can review what happened, what was learned and whether another approach is reasonable. There is no single next step for everyone."],
+  ]],
+  ["Practical", [
+    ["Are evening consultations available?", "Yes. The fictional clinic is open Monday through Saturday until 8:30 PM."],
+    ["Is my information private?", "A real clinic should explain how patient information is collected, stored and used. This demo does not collect or store medical information."],
+  ]],
+];
+
+export default function FAQPage() {
+  return (
+    <PageShell eyebrow="04 / FAQ" title="The questions people usually carry into the room." body="Short answers for the things that are often difficult to ask out loud.">
+      <section className="section">
+        <div className="container faq-page">
+          {groups.map(([group, items]) => (
+            <section className="faq-group" key={group}>
+              <div className="section-kicker">{group}</div>
+              {items.map(([question, answer]) => (
+                <details key={question}>
+                  <summary>{question}<span>+</span></summary>
+                  <p>{answer}</p>
+                </details>
+              ))}
+            </section>
+          ))}
+          <div className="demo-note"><strong>Important</strong><p>Information on this fictional website is for general education and demonstration only. A real clinic's medical content should be reviewed and approved by its treating clinicians.</p></div>
+        </div>
+      </section>
+    </PageShell>
+  );
+}
