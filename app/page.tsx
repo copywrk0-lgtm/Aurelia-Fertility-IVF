@@ -21,12 +21,6 @@ export default function Home() {
           <span>Fertility & women’s care</span>
           <span>South Delhi · Evening consultations</span>
         </div>
-        <div className="container hero-copy">
-          <div className="hero-kicker">A quieter way to begin</div>
-          <h1>Fertility treatment should feel less like a maze.</h1>
-          <p className="hero-lead">A considered first step for people who want to understand what is happening, what can be done, and what comes next.</p>
-          <a className="primary-btn" href="/contact">Book a consultation <ArrowRight size={17} /></a>
-        </div>
         <div className="container hero-image-wrap">
           <div className="hero-image">
             <img src={clinic.images.hero} alt="Fictional fertility specialist in a calm clinic setting" width="1800" height="1000" fetchPriority="high" />
@@ -36,6 +30,12 @@ export default function Home() {
             <span>THE FIRST APPOINTMENT</span>
             <strong>Come with questions. Leave with a clearer next step.</strong>
           </div>
+        </div>
+        <div className="container hero-copy">
+          <div className="hero-kicker">A quieter way to begin</div>
+          <h1>Fertility treatment should feel less like a maze.</h1>
+          <p className="hero-lead">A considered first step for people who want to understand what is happening, what can be done, and what comes next.</p>
+          <a className="primary-btn" href="/contact">Book a consultation <ArrowRight size={17} /></a>
         </div>
       </section>
 
