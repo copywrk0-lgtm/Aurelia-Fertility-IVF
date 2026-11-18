@@ -4,8 +4,8 @@ export const clinic = {
   demoLabel: "DEMO — FICTIONAL CLINIC",
   location: "South Delhi",
   address: "18 Aruna Asaf Ali Road, South Delhi, New Delhi 110067",
-  phone: "98XXXXXXXX",
-  whatsapp: "98XXXXXXXX",
+  phone: "9711170297",
+  whatsapp: "9711170297",
   email: "hello@nivara-demo.example",
   hours: [
     { day: "Monday", hours: "9:00 AM – 8:30 PM" },
